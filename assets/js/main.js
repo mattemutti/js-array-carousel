@@ -21,15 +21,15 @@ const slides = [
 ]
 
 //
-const activeImage = 3;
+let activeImage = 3;
 
 const slideElements=document.querySelector('.slides');
 //console.log(slides, activeImage, slideElements);
 
 // seleziono il pulsante prev nella dom
-const prevElement = document.querySelector('.prev')
+const prevElement = document.querySelector('.prev');
 // seleziono il pulsante next nella dom
-const nextElement = document.querySelector('.next')
+const nextElement = document.querySelector('.next');
  
 // generare le immmagini dentro all'elemento slides nella DOM
 //con un ciclo for
@@ -55,6 +55,30 @@ prevElement.addEventListener('click', function(){
 
 	console.log("tornai indietro");
 
+	// decremento il valore di activeImage di 1
+	activeImage--
+	//console.log(activeImage);
+
+	if (activeImage < 0) {
+		activeImage = slides.length - 1;
+	}
+
+	// rimuoviamo la classe active dall'elemento che c'è l'ha già
+	// selezioniamo l'immagine dek dom che ha quella classe attiva
+	const currentImage =  document.querySelector('img.active');
+	//console.log(currentImage);
+	currentImage.classList.remove('active')
+
+	
+	// assegniamo la classe active all'immagine corrispondente   
+	// seleziono la prossima slide delle immagini renderizzate
+	const allSlide= document.querySelectorAll('.slides img')
+	console.log(allSlide);
+	console.log(allSlide[activeImage]);
+
+	// al nodo della dom immagine con il numero activeimage attivi la classe active
+	allSlide[activeImage].classList.add('active')
+
 
 })
 
@@ -65,6 +89,33 @@ prevElement.addEventListener('click', function(){
 nextElement.addEventListener('click', function(){
 
 	console.log("vai avanti");
+
+	// incrementiamo il valore di activeImage di 1
+	activeImage++;
+	//console.log(activeImage);
+	//	console.log(activeImage > slides.length - 1);
+
+
+	if (activeImage > slides.length - 1) {
+		activeImage = 0;
+	}
+
+	// rimuoviamo la classe active dall'elemento che c'è l'ha già
+	// selezioniamo l'immagine dek dom che ha quella classe attiva
+	const currentImage =  document.querySelector('img.active');
+	//console.log(currentImage);
+	currentImage.classList.remove('active');
+
+	
+	// assegniamo la classe active all'immagine corrispondente   
+	// seleziono la prossima slide delle immagini renderizzate
+	const allSlide= document.querySelectorAll('.slides img');
+	console.log(allSlide);
+	console.log(allSlide[activeImage]);
+
+
+	// al nodo della dom immagine con il numero activeimage attivi la classe active
+	allSlide[activeImage].classList.add('active');
 
 
 })
